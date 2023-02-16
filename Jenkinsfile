@@ -63,6 +63,7 @@ pipeline{
         stage("Upload jar to nexus Artifactory"){
             steps{
                 script{
+                    def readPomVersion = readMavenPom file: 'pom.xml'
                     nexusArtifactUploader artifacts: 
                     [
                         [
@@ -73,11 +74,11 @@ pipeline{
                     ],
                     credentialsId: 'nexus-auth',
                     groupId: 'com.example',
-                    nexusUrl: '65.0.203.67:8081',
+                    nexusUrl: '3.110.87.199:8081',
                     nexusVersion: 'nexus3',
                     protocol: 'http',
                     repository: 'demoapp-release',
-                    version: '1.0.0'
+                    version: $(readPomVersion.version)
                 }
             }
         }

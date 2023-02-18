@@ -47,6 +47,7 @@
             </executions>
 			</plugin>
 		</plugins>
+		
 	</build>
 
 

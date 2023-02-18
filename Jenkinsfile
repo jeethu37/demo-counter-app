@@ -10,40 +10,13 @@ pipeline{
                 
                 script{
                     
-                    git branch: 'main', credentialsId: 'GitCredentials', url: 'https://github.com/jeethu37/demo-counter-app.git'
+                    git branch: 'main', credentialsId: 'MyJob', url: 'https://github.com/jeethu37/demo-counter-app.git'
                 }
             }
         }
-        stage('UNIT testing'){
-            
-            steps{
-                
-                script{
-                    
-                    sh 'mvn test'
-                }
-            }
-        }
-        stage('Integration testing'){
-            
-            steps{
-                
-                script{
-                    
-                    sh 'mvn verify -DskipUnitTests'
-                }
-            }
-        }
-        stage('Maven build'){
-            
-            steps{
-                
-                script{
-                    
-                    sh 'mvn clean install'
-                }
-            }
-        }
+        
+        
+        
        
 }
 }

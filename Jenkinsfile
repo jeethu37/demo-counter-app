@@ -10,7 +10,7 @@ pipeline{
                 
                 script{
                     
-                    git branch: 'main', url: 'https://github.com/shaharukh341/demo-counter-app.git'
+                    git branch: 'main', credentialsId: 'GitCredentials', url: 'https://github.com/jeethu37/demo-counter-app.git'
                 }
             }
         }
@@ -44,44 +44,6 @@ pipeline{
                 }
             }
         }
-        stage("Static Code Analysis"){
-            steps{
-                script{
-                    withSonarQubeEnv(credentialsId: 'sonar_api_key') {
-                    sh 'mvn clean package sonar:sonar'
-                    }
-                }
-            }
-        }
-        stage("Quality Gate Status"){
-            steps{
-                script{
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar_api_key'
-                }
-            }
-        }
-        stage("Upload jar to nexus Artifactory"){
-            steps{
-                script{
-                    def readPomVersion = readMavenPom file: 'pom.xml'
-                    def nexusRepo = readPomVersion.version.endsWith("SNAPSHOT") ? "demoapp-SNAPSHOT" : "demoapp-release"
-                    nexusArtifactUploader artifacts: 
-                    [
-                        [
-                            artifactId: 'springboot',
-                            classifier: '', file: 'target/Uber.jar',
-                            type: 'jar'
-                            ]
-                    ],
-                    credentialsId: 'nexus-auth',
-                    groupId: 'com.example',
-                    nexusUrl: '3.110.87.199:8081',
-                    nexusVersion: 'nexus3',
-                    protocol: 'http',
-                    repository: nexusRepo,
-                    version: "${readPomVersion.version}"
-                }
-            }
-        }
-    }
+       
+}
 }

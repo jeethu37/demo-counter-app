@@ -10,7 +10,7 @@ pipeline{
                 
                 script{
                     
-                    git branch: 'main', credentialsId: 'MyJob', url: 'https://github.com/jeethu37/demo-counter-app.git'
+                    git branch: 'main', credentialsId: 'MyJenkins', url: 'https://github.com/jeethu37/demo-counter-app.git'
                 }
             }
         }

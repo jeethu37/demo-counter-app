@@ -79,15 +79,20 @@ pipeline{
 }
 }		
 
-       stage('war file to nexus'){
+       stage('Upload war file to nexus'){
 
          steps{
 
                 script{
+				
+				      def readPomVersion = readMavenPom file: 'pom.xml' 
 
 
-                     nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']], credentialsId: 'nexus-auth', groupId: 'com.example', nexusUrl: '35.160.230.168:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'demoapp-release', version: '1.0.0'
-                       
+                     nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']], credentialsId: 'nexus-auth', groupId: 'com.example', nexusUrl: '35.160.230.168:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'demoapp-release', version: "${readPomVersion.version}"
+                    
+
+              
+					
 }
 }
 }

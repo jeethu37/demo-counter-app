@@ -93,10 +93,23 @@ pipeline{
                      nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']], credentialsId: 'nexus-auth', groupId: 'com.example', nexusUrl: '35.160.230.168:8081', nexusVersion: 'nexus3', protocol: 'http', repository: nexusRepo, version: "${readPomVersion.version}"
                     
 
-              
-					
 }
 }
+}
+
+stage('Docker Image Build'){
+
+    steps{
+
+        script{
+
+            sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+            sh 'docker image tag $JOB_NAME:v1.$BUILD_ID jeethu37/$JOB_NAME:v1.$BUILD_ID'
+            sh 'docker image tag $JOB_NAME:v1.$BUILD_ID jeethu37/$JOB_NAME:latest'
+
+
+        }
+    }
 }
 					   
 				   

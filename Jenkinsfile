@@ -121,7 +121,7 @@ steps{
     script{
             
 
-            withCredentials([string(credentialsId: 'git_creds', variable: 'docker_hub_cred')]) {
+            withCredentials([string(credentialsId: 'dockerhub_pwd', variable: 'dockerhub_cred')]) {
     
 
             sh 'docker login -u jeethu37 -p ${docker_hub_cred}'

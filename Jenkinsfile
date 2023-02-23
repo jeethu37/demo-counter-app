@@ -114,7 +114,7 @@ stage('Docker Image Build'){
 
 
 
-stage('Push image to the docker hub')
+/*stage('Push image to the docker hub'){
 
 steps{
 
@@ -123,8 +123,8 @@ steps{
 
     }
 }
-				   
-		
+	*/			   
+}		
               
 }
 }

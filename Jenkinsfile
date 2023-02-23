@@ -111,7 +111,18 @@ stage('Docker Image Build'){
         }
     }
 }
-					   
+
+
+
+stage('Push image to the docker hub')
+
+steps{
+
+    script{
+
+
+    }
+}
 				   
 		
               

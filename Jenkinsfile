@@ -103,9 +103,9 @@ stage('Docker Image Build'){
 
         script{
 
-            sh 'docker image build -t $jOB_NAME:v1.$BUILD_ID .'
-            sh 'docker image tag $jOB_NAME:v1.$BUILD_ID jeethu37/$jOB_NAME:v1.$BUILD_ID'
-            sh 'docker image tag $jOB_NAME:v1.$BUILD_ID jeethu37/$jOB_NAME:latest'
+            sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+            sh 'docker image tag $JOB_NAME:v1.$BUILD_ID jeethu37/$JOB_NAME:v1.$BUILD_ID'
+            sh 'docker image tag $JOB_NAME:v1.$BUILD_ID jeethu37/$JOB_NAME:latest'
 
 
         }
@@ -114,18 +114,29 @@ stage('Docker Image Build'){
 
 
 
-/*stage('Push image to the docker hub'){
+stage('Push image to the docker hub'){
 
 steps{
 
     script{
+            
 
+            withCredentials([string(credentialsId: 'git_creds', variable: 'docker_hub_cred')]) {
+    
+
+            sh 'docker login -u jeethu37 -p ${docker_hub_cred}'
+            sh 'docker image push jeethu37/$JOB_NAME:v1.$BUILD_ID'
+            sh 'docker image push jeethu37/$JOB_NAME:latest'
+
+
+
+}
 
     }
 }
 			   
 }		
-       */       
+             
 }
 
 }

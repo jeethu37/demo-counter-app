@@ -103,9 +103,9 @@ stage('Docker Image Build'){
 
         script{
 
-            sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
-            sh 'docker image tag $JOB_NAME:v1.$BUILD_ID jeethu37/$JOB_NAME:v1.$BUILD_ID'
-            sh 'docker image tag $JOB_NAME:v1.$BUILD_ID jeethu37/$JOB_NAME:latest'
+            sh 'docker image build -t $jOB_NAME:v1.$BUILD_ID .'
+            sh 'docker image tag $jOB_NAME:v1.$BUILD_ID jeethu37/$jOB_NAME:v1.$BUILD_ID'
+            sh 'docker image tag $jOB_NAME:v1.$BUILD_ID jeethu37/$jOB_NAME:latest'
 
 
         }

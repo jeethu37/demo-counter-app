@@ -121,7 +121,7 @@ steps{
     script{
              
 
-            withCredentials([string(credentialsId: 'mydocker', variable: 'docker_hub_cred')]) {
+            withCredentials([string(credentialsId: 'dockerpassword', variable: 'docker_hub_cred')]) {
     
 
             sh 'docker login -u jeethu37 -p ${docker_hub_cred}'
